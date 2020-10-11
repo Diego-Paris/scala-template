@@ -1,3 +1,7 @@
 ~run
 ?
 exit
+~run
+run
+~run
+exit
