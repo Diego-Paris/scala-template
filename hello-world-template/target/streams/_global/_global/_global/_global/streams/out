@@ -1,0 +1,18 @@
+[0m[[0m[0mdebug[0m] [0m[0m[watch] [hello-world-template / Compile / run] Found inputs: /mnt/c/Users/Hipep/Documents/vscode-workspace/median-project/hello-world-template/*.{java,scala},/mnt/c/Users/Hipep/Documents/vscode-workspace/median-project/hello-world-template/src/main/java/**/*.{java,scala},/mnt/c/Users/Hipep/Documents/vscode-workspace/median-project/hello-world-template/src/main/resources/**/*,/mnt/c/Users/Hipep/Documents/vscode-workspace/median-project/hello-world-template/src/main/scala/**/*.{java,scala},/mnt/c/Users/Hipep/Documents/vscode-workspace/median-project/hello-world-template/src/main/scala-2.12/**/*.{java,scala}[0m
+[0m[[0m[0minfo[0m] [0m[0m1. Monitoring source files for hello-world-template/run...[0m
+[0m[[0m[0minfo[0m] [0m[0m   Press <enter> to interrupt or '?' for more options.[0m
+[0m[[0m[0mdebug[0m] [0m[0m[watch] [debug] Received input event: ShowOptions.[0m
+[0m[[0m[0mdebug[0m] [0m[0m[watch] [debug] Received input event: ShowOptions.[0m
+[0m[[0m[0minfo[0m] [0m[0mOptions:[0m
+[0m[[0m[0minfo[0m] [0m[0m  <ctrl-d> : interrupt (exits sbt in batch mode)[0m
+[0m[[0m[0minfo[0m] [0m[0m  <enter>  : interrupt (exits sbt in batch mode)[0m
+[0m[[0m[0minfo[0m] [0m[0m  '?'      : print options[0m
+[0m[[0m[0minfo[0m] [0m[0m  'q'      : quit sbt[0m
+[0m[[0m[0minfo[0m] [0m[0m  'r'      : re-run the command[0m
+[0m[[0m[0minfo[0m] [0m[0m  's'      : return to shell[0m
+[0m[[0m[0mdebug[0m] [0m[0m[watch] [debug] Received input event: Trigger.[0m
+[0m[[0m[0mdebug[0m] [0m[0m[watch] [debug] Received input event: Trigger.[0m
+[0m[[0m[0minfo[0m] [0m[0m2. Monitoring source files for hello-world-template/run...[0m
+[0m[[0m[0minfo[0m] [0m[0m   Press <enter> to interrupt or '?' for more options.[0m
+[0m[[0m[0mdebug[0m] [0m[0m[watch] [debug] Received input event: Run().[0m
+[0m[[0m[0mdebug[0m] [0m[0m[watch] [debug] Received input event: Run().[0m

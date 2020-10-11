@@ -1,0 +1,1 @@
+["sbt.Task[scala.collection.immutable.Map[java.lang.String, scala.collection.Seq[scala.Tuple2[java.nio.file.Path, sbt.nio.FileStamp]]]]",{"2.12.6":{"hashes":[["/mnt/c/Users/Hipep/Documents/vscode-workspace/median-project/hello-world-template/src/main/scala/Main.scala","d70e6497f030731a4c06133df0feb29c25565519"]],"lastModifiedTimes":[]}}]
