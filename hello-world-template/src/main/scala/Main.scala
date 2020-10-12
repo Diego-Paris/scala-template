@@ -17,56 +17,86 @@ trait Helper {
   // sequential filter
   def runFilterV1 (file: String) {
 
-    println("In filter! " + file)
+    val startTimeMillis = System.currentTimeMillis()
 
     val img = ImageIO.read(new File(file))
 
     val w = img.getWidth
     val h = img.getHeight
 
-    applyMedianFilter(img, w, h)
+    applyMedianFilter(img, w, h, 0, 0)
 
     ImageIO.write(img,"png",new File("output.png"))
 
+    val endTimeMillis = System.currentTimeMillis()
+    val durationSeconds = (endTimeMillis - startTimeMillis) // / 1000
+ 
+    //println(startTimeMillis)
+    //println(endTimeMillis)
+
+    println("Actor 1 completed in " + durationSeconds + " seconds")
   }
 
   // Concurrent filter
   def runFilterV2 (file: String) {
 
+    val startTimeMillis = System.currentTimeMillis()
+
+    val img = ImageIO.read(new File(file))
+
+    val w = img.getWidth
+    val h = img.getHeight
+    
     val fut1 = Future{
-      println("In filter! " + file)
+    
+      // first half
+      applyMedianFilter(img, w/2, h, 0, 0)
 
-      val img = ImageIO.read(new File(file))
+      // second half
+      //applyMedianFilter(img, w, h, w/2, 0)
 
-      val w = img.getWidth
-      val h = img.getHeight
-
-      applyMedianFilter(img, w, h)
-
-      ImageIO.write(img,"png",new File("output.png"))
     }
 
-    // fut1 onComplete {
-    //   case Success(idx) => println("The keyword first appears at position: ")
-    //   case Failure(t) => println("Could not process file: " + t.getMessage)
-    // }
+    val fut2 = Future{
+    
+      // first half
+      //applyMedianFilter(img, w/2, h, 0, 0)
+
+      // second half
+      applyMedianFilter(img, w, h, w/2, 0)
+
+    }
+
 
     val aggFut = for{
       f1Result <- fut1
-    } yield (f1Result)
+      f2Result <- fut2
+    } yield (f1Result, f2Result)
 
     aggFut onComplete {
-      case Success(idx) => println("The keyword first appears at position: ")
+      case Success(idx) => {
+        
+        ImageIO.write(img,"png",new File("output2.png"))
+        val endTimeMillis = System.currentTimeMillis()
+        val durationSeconds = (endTimeMillis - startTimeMillis) // / 1000
+        
+        //println(startTimeMillis)
+        //println(endTimeMillis)
+
+        println("Actor 2 completed in " + durationSeconds + " seconds")
+        }
       case Failure(t) => println("Could not process file: " + t.getMessage)
     }
 
   }
 
 
-  def applyMedianFilter(img: BufferedImage, w: Int, h: Int) = {
+  def applyMedianFilter(img: BufferedImage, w: Int, h: Int, sw: Int, sh: Int) = {
+    //for (x <- 0 until w) {
+    // for (y <- 0 until h) {
     
-    for (x <- 0 until w) {
-      for (y <- 0 until h) {
+    for (x <- sw until w) {
+      for (y <- sh until h) {
 
         val pixel = img.getRGB(x,y)
 
@@ -94,10 +124,10 @@ trait Helper {
 
           // Set pixel to median
           img.setRGB(x,y, median)
-          println("Changed pixel")
+          //println("Changed pixel")
         } catch {
           case e:Exception=>
-            println("Skipped pixel!!")
+            //println("Skipped pixel!!")
         }
 
       }
@@ -129,9 +159,18 @@ class HelloActor(file: String) extends Actor with Helper {
 
   def receive = {
     // (2) changed these println statements
-    case "hello"    => println("hello from %s".format(file))
-    case "what"     => getMedian(Array(1, 2, 3, 4, 5, 6, 7, 8, 9))
     case "filter"   => runFilterV1(file)
+    case _          => println("'huh?', said %s".format(file))
+  }
+
+}
+
+// (1) changed the constructor here
+class HelloActor2(file: String) extends Actor with Helper {
+
+  def receive = {
+    // (2) changed these println statements
+    case "filter"   => runFilterV2(file)
     case _          => println("'huh?', said %s".format(file))
   }
 
@@ -139,15 +178,17 @@ class HelloActor(file: String) extends Actor with Helper {
 
 object Main extends App {
 
+  val myFile = "grainy.png"
+
   val system = ActorSystem("HelloSystem")
 
   // (3) changed this line of code
-  val helloActor = system.actorOf(Props(new HelloActor("grainy.png")), name = "helloactor")
+  val helloActor = system.actorOf(Props(new HelloActor(myFile)), name = "helloactor")
 
-  helloActor ! "hello"
-  helloActor ! "buenos dias"
-  helloActor ! "what"
+  val helloActor2 = system.actorOf(Props(new HelloActor2(myFile)), name = "helloactor2")
+
   helloActor ! "filter"
+  helloActor2 ! "filter"
 }
 
 

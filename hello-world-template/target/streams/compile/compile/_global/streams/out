@@ -1,4 +1,5 @@
-[0m[[0m[31merror[0m] [0m[0m/mnt/c/Users/Hipep/Documents/vscode-workspace/median-project/hello-world-template/src/main/scala/Main.scala:37:19: not found: value fut1[0m
-[0m[[0m[31merror[0m] [0m[0m      f1Result <- fut1[0m
-[0m[[0m[31merror[0m] [0m[0m                  ^[0m
+[0m[[0m[31merror[0m] [0m[0m/mnt/c/Users/Hipep/Documents/vscode-workspace/median-project/hello-world-template/src/main/scala/Main.scala:44:24: not enough arguments for method applyMedianFilter: (img: java.awt.image.BufferedImage, w: Int, h: Int, sw: Int, sh: Int)Unit.[0m
+[0m[[0m[31merror[0m] [0m[0mUnspecified value parameters sw, sh.[0m
+[0m[[0m[31merror[0m] [0m[0m      applyMedianFilter(img, w, h)[0m
+[0m[[0m[31merror[0m] [0m[0m                       ^[0m
 [0m[[0m[31merror[0m] [0m[0mone error found[0m
