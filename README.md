@@ -14,5 +14,5 @@ Actor 2 completed in 1858 ms<br/>
 -<br/>
 Filtering grainy.png (316x303)<br/>
 7.09877% increase<br/>
-Actor 1 completed in 347 seconds<br/>
-Actor 2 completed in 324 seconds<br/>
+Actor 1 completed in 347 ms<br/>
+Actor 2 completed in 324 ms<br/>
